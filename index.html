@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tělocvikové Disciplíny</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <style>
+        body, input {
+            font-family: 'Montserrat';
+        }
+    </style>
+    <div class="buttons">
+        <p>Řádky:
+        <button onclick="addRow()">+</button>
+        <button onclick="removeRow()">-</button></p>
+        <p>Sloupečky:
+        <button onclick="addColumns()">+</button>
+        <button onclick="removeColumns()">-</button></p>
+    </div>
+
+    <div class="container">
+        <div class="exselTabulka">
+            <!-- SIMPLE NADPISEK -->
+            <h1 class="text" id="pageHeading">Počítání bodů u tělesných disciplín</h1>
+            
+            <!-- MAIN TABULKA -->
+            <table>
+                <thead>
+                    <tr>
+                        <th>Jméno</th>
+                        <th><input class="headInput" type="text" placeholder="Disciplína" value="Sedy-lehy"></th>
+                        <th><input class="headInput" type="text" placeholder="Disciplína" value="Skok daleký"></th>
+                        <th><input class="headInput" type="text" placeholder="Disciplína" value="Shyby"></th>
+                        <th id="total-header">Celkové Body</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><input type="text" value="Daniel" placeholder="Jméno"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td class="result">0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Matyáš" placeholder="Jméno"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td class="result">0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Tomáš" placeholder="Jméno"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td class="result">0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Lukáš" placeholder="Jméno"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td class="result">0</td>
+                    </tr>
+                    <tr>
+                        <td><input type="text" value="Kuba" placeholder="Jméno"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td><input class="points-input" type="text" placeholder="0"></td>
+                        <td class="result">0</td>
+                    </tr>
+                </tbody>
+                <tfoot></tfoot>
+            </table>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
