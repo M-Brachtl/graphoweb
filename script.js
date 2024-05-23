@@ -1,4 +1,5 @@
 let people = document.querySelectorAll('tbody tr');
+let data = [];
 
 function evaluatePoints(points) {
     people.forEach(person => {
@@ -62,3 +63,38 @@ function removeColumns() {
     heading.removeChild(heading.querySelectorAll('.headInput')[heading.querySelectorAll('.headInput').length - 1].parentElement);
     evaluatePoints();
 }
+
+function closeGraph(){
+    document.querySelector('.graph').style.top = "calc(100vh + 50%)";
+    document.querySelectorAll('.blur').forEach(blur => blur.classList.remove('blur'));
+}
+
+async function openGraph(){
+    // get graph png code
+    let newData = [];
+    people.forEach(person => {
+        const points = Array.from(person.querySelectorAll('.points-input')).map(pnt => pnt.value || 0);
+        const name = person.querySelector('input').value;
+        newData.push({'name': name, 'points': points});
+    });
+    console.log(JSON.stringify(newData)!=JSON.stringify(data))
+    if (JSON.stringify(newData)!=JSON.stringify(data)) {
+        data = newData;
+        const response = await fetch('http://localhost:8000/get_data', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+        const answer = await response.json();
+        console.log(answer);
+        document.querySelector('.graph img').src = "http://localhost:8000/graph?" + new Date().getTime(); // čas pro reload
+    }
+    ///
+    // document.querySelector('.graph').style.display = 'flex';
+    document.querySelector('.graph').style.top = '49vh';
+    document.querySelector('.container').classList.add('blur');
+    document.querySelector('.buttons').classList.add('blur');
+}
+document.querySelector('.graph button').addEventListener('click', closeGraph);

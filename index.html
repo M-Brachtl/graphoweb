@@ -22,6 +22,9 @@
         <p>Sloupečky:
         <button onclick="addColumns()">+</button>
         <button onclick="removeColumns()">-</button></p>
+        <p>
+        <button id="open-graph-button" onclick="openGraph()">Otevřít graf</button>
+        </p>
     </div>
 
     <div class="container">
@@ -80,6 +83,11 @@
                 <tfoot></tfoot>
             </table>
         </div>
+    </div>
+    <div class="graph">
+        <h2>Graf</h2>
+        <img src="http://localhost:8000/graph" alt="graph">
+        <button>Zavřít</button>
     </div>
     <script src="script.js"></script>
 </body>
