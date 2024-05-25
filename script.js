@@ -80,12 +80,13 @@ async function openGraph(){
     console.log(JSON.stringify(newData)!=JSON.stringify(data))
     if (JSON.stringify(newData)!=JSON.stringify(data)) {
         data = newData;
+        console.log(JSON.stringify([data,Array.from(document.querySelectorAll('.headInput')).map(input => input.value)]));
         const response = await fetch('http://localhost:8000/get_data', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify([data,Array.from(document.querySelectorAll('.headInput')).map(input => input.value)])
         })
         const answer = await response.json();
         console.log(answer);

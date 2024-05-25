@@ -1,17 +1,19 @@
 import matplotlib.pyplot as plt
 
-years = [2010, 2011, 2012, 2013, 2014, 2015]
-students = {
-    "Maty": [20, 30, 25, 30, 40, 50],
-    "Dan": [30, 40, 35, 40, 50, 60],
-    "Luke": [40, 50, 45, 50, 60, 70]
-}
-def graphify(x_values: list, y_values: dict, color_scheme=("blue","red","green","yellow"), legend=False):
-    for student in students:
-        plt.plot(years,students[student],label=student,color=color_scheme[list(students.keys()).index(student)])
-    if legend: plt.legend()
-    plt.savefig("output")
+data = [{'name': 'Daniel', 'points': [5, 2, 3]},
+        {'name': 'Matyáš', 'points': [10, 4, 5]},
+        {'name': 'Tomáš', 'points': [3, 5, 7]},
+        {'name': 'Lukáš', 'points': [9, 5, 4]},
+        {'name': 'Kuba', 'points': [5, 2, 8]}
+        ]
+names = [d['name'] for d in data]
+points = [d['points'] for d in data]
+disciplines = ['kliky','shyby','dřepy']
 
-graphify(years,students,legend=True)
+print(points)
 
+for i in range(3):
+    plt.bar(names, [p[i] for p in points], label=disciplines[i])
+
+plt.legend()
 plt.show()

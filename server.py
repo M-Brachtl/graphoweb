@@ -1,6 +1,7 @@
 import fastapi as fi
 from uvicorn import run as uvi_run
 from json import loads as jloads
+import matplotlib.pyplot as plt
 
 app = fi.FastAPI()
 
@@ -18,8 +19,17 @@ def style():
 @app.post("/get_data")
 async def get_data(request: fi.Request):
     request_body = await request.body()
-    data = jloads(request_body)
-    print(data, type(data))
+    disciplines = jloads(request_body)[1]
+    data = jloads(request_body)[0]
+    names = [d['name'] for d in data]
+    points = [d['points'] for d in data]
+    plt.cla()
+    for i in range(len(disciplines)):
+        plt.bar([tick+0.25*(i-1) for tick in (range(len(names)))], [int(p[i]) for p in points], width=0.25, label=disciplines[i])
+
+    plt.xticks(tuple(range(len(names))),names)
+    plt.legend()
+    plt.savefig("output.png")
     return {"message": "Your data has been received!"}
 
 @app.get("/graph")
