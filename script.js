@@ -36,34 +36,6 @@ function removeRow() {
     people = document.querySelectorAll('tbody tr');
 };
 
-function addColumns() {
-    const rows = document.querySelectorAll('tbody tr');
-    const heading = document.querySelector('thead tr');
-    rows.forEach(row => {
-        const newCol = document.createElement('td');
-        const lastKid = row.querySelector('td.result');
-        row.removeChild(lastKid);
-        row.appendChild(newCol);
-        row.appendChild(lastKid);
-        newCol.innerHTML = '<input type="text" class="points-input" placeholder="0">';
-        newCol.querySelector('.points-input').addEventListener('input', evaluatePoints);
-    });
-    const lastKid = heading.querySelector('#total-header');
-    heading.removeChild(lastKid);
-    heading.innerHTML += '<th><input class="headInput" type="text" placeholder="Disciplína"></th>';
-    heading.appendChild(lastKid);
-}
-
-function removeColumns() {
-    const rows = document.querySelectorAll('tbody tr');
-    const heading = document.querySelector('thead tr');
-    rows.forEach(row => {
-        row.removeChild(row.querySelectorAll('.points-input')[row.querySelectorAll('.points-input').length - 1].parentElement);
-    });
-    heading.removeChild(heading.querySelectorAll('.headInput')[heading.querySelectorAll('.headInput').length - 1].parentElement);
-    evaluatePoints();
-}
-
 function closeGraph(){
     document.querySelector('.graph').style.top = "calc(100vh + 50%)";
     document.querySelectorAll('.blur').forEach(blur => blur.classList.remove('blur'));

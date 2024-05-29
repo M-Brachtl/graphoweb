@@ -1,19 +1,17 @@
 import matplotlib.pyplot as plt
+from json import loads as jloads
 
-data = [{'name': 'Daniel', 'points': [5, 2, 3]},
-        {'name': 'Matyáš', 'points': [10, 4, 5]},
-        {'name': 'Tomáš', 'points': [3, 5, 7]},
-        {'name': 'Lukáš', 'points': [9, 5, 4]},
-        {'name': 'Kuba', 'points': [5, 2, 8]}
-        ]
+request_body = '[[{"name":"Daniel","points":["1","2","2"]},{"name":"Matyáš","points":["8","7","4"]},{"name":"Tomáš","points":["4","2","7"]},{"name":"Lukáš","points":["4","6","2"]},{"name":"Kuba","points":["7","5","8"]}],["Sedy-lehy","Skok daleký","Shyby"]]'
+disciplines = jloads(request_body)[1]
+data = jloads(request_body)[0]
 names = [d['name'] for d in data]
 points = [d['points'] for d in data]
-disciplines = ['kliky','shyby','dřepy']
 
-print(points)
+widy = 0.25
+# plt.cla()
+for i in range(len(disciplines)):
+    plt.bar([tick+widy*(i-1) for tick in (range(len(names)))], [int(p[i]) for p in points], width=widy, label=disciplines[i])
 
-for i in range(3):
-    plt.bar(names, [p[i] for p in points], label=disciplines[i])
-
+plt.xticks([t+1/(1/widy - 1)/2-0.035 for t in range(len(names))],names)
 plt.legend()
 plt.show()
